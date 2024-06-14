@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fitsure</title>
+</head>
+<body>
+    <h1>Welcome to Fitsure</h1>
+    <h2>Categories</h2>
+    <ul>
+        {% for category in categories %}
+            <li>{{ category.name }}</li>
+        {% endfor %}
+    </ul>
+    <h2>Programs</h2>
+    <ul>
+        {% for program in programs %}
+            <li>{{ program.name }} - <a href="{% url 'program_detail' program.id %}">Details</a></li>
+        {% endfor %}
+    </ul>
+    <h2>Trainers</h2>
+    <ul>
+        {% for trainer in trainers %}
+            <li>{{ trainer.name }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
