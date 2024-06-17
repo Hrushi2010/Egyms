@@ -1,27 +1,297 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fitsure</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Poppins', sans-serif;
+        }
+        .header {
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            background-color: #007bff;
+            color: white;
+            padding: 20px 0;
+        }
+        .section-title {
+            text-align: center;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            color: #007bff;
+            font-weight: 600;
+        }
+        .card img {
+            height: 200px;
+            object-fit: cover;
+        }
+        .auth-buttons {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .auth-buttons .btn {
+            margin: 0 10px;
+            transition: all 0.3s ease;
+        }
+        .auth-buttons .btn-light {
+            background-color: #ffc107;
+            border: none;
+        }
+        .auth-buttons .btn-light:hover {
+            background-color: #e0a800;
+        }
+        .auth-buttons .btn-dark {
+            background-color: #6c757d;
+            border: none;
+        }
+        .auth-buttons .btn-dark:hover {
+            background-color: #5a6268;
+        }
+        .modal-header {
+            background-color: #007bff;
+            color: white;
+            border-bottom: none;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+        .hero {
+            position: relative;
+            background: url('https://via.placeholder.com/1200x400?text=Fitness+Hero+Image') no-repeat center center;
+            background-size: cover;
+            height: 400px;
+            color: white;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 600;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        .hero p {
+            font-size: 1.5rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+        .card-title {
+            font-weight: 600;
+        }
+        .fa-running {
+            font-size: 1.5rem;
+            color: #007bff;
+        }
+        /* Slider CSS */
+        .carousel-item img {
+            height: 300px;
+            object-fit: cover;
+        }
+        .carousel-item {
+            min-height: 400px; /* Adjust as needed */
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome to Fitsure</h1>
-    <h2>Categories</h2>
-    <ul>
-        {% for category in categories %}
-            <li>{{ category.name }}</li>
-        {% endfor %}
-    </ul>
-    <h2>Programs</h2>
-    <ul>
-        {% for program in programs %}
-            <li>{{ program.name }} - <a href="{% url 'program_detail' program.id %}">Details</a></li>
-        {% endfor %}
-    </ul>
-    <h2>Trainers</h2>
-    <ul>
-        {% for trainer in trainers %}
-            <li>{{ trainer.name }}</li>
-        {% endfor %}
-    </ul>
+    <div class="container">
+        <!-- Hero Section -->
+        <div class="hero">
+            <div>
+                <h1>Welcome to Fitsure</h1>
+                <p>Your ultimate fitness destination <i class="fas fa-running"></i></p>
+                <div class="auth-buttons">
+                    <button class="btn btn-light" data-toggle="modal" data-target="#signupModal">Sign Up</button>
+                    <button class="btn btn-dark" data-toggle="modal" data-target="#loginModal">Login</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Categories Section with Carousel -->
+        <section id="categories">
+            <h2 class="section-title">Categories</h2>
+            <div id="categoryCarousel" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="row">
+                            <div class="col-md-4 mb-4">
+                                <div class="card">
+                                    <img src="https://via.placeholder.com/400x200?text=Yoga" class="card-img-top" alt="Yoga">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Yoga</h5>
+                                        <p class="card-text">Experience tranquility and balance with yoga sessions for all levels.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-4">
+                                <div class="card">
+                                    <img src="https://via.placeholder.com/400x200?text=Zumba" class="card-img-top" alt="Zumba">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Zumba</h5>
+                                        <p class="card-text">Join our energetic Zumba classes and dance your way to fitness.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-4">
+                                <div class="card">
+                                    <img src="https://via.placeholder.com/400x200?text=Gym" class="card-img-top" alt="Gym">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Gym</h5>
+                                        <p class="card-text">State-of-the-art gym facilities to help you achieve your fitness goals.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Add more carousel items here -->
+                </div>
+                <a class="carousel-control-prev" href="#categoryCarousel" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#categoryCarousel" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- About Us Section -->
+        <section id="about">
+            <h2 class="section-title">About Us</h2>
+            <p class="text-center">At Fitsure, we provide top-notch fitness services tailored to your needs. Our team of professional trainers and state-of-the-art facilities are here to support you on your fitness journey.</p>
+        </section>
+
+        <!-- Programs Section -->
+        <section id="programs">
+            <h2 class="section-title">Programs</h2>
+            <div class="row">
+                {% for program in programs %}
+                    <div class="col-md-4 mb-4">
+                        <div class="card">
+                            <img src="{{ program.image_url }}" class="card-img-top" alt="{{ program.name }}">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ program.name }}</h5>
+                                <p class="card-text">{{ program.description }}</p>
+                                <a href="{% url 'program_detail' program.id %}" class="btn btn-primary">Details</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+
+        <!-- Trainers Section -->
+        <section id="trainers">
+            <h2 class="section-title">Trainers</h2>
+            <div class="row">
+                {% for trainer in trainers %}
+                    <div class="col-md-4 mb-4">
+                        <div class="card">
+                            <img src="{{ trainer.image_url }}" class="card-img-top" alt="{{ trainer.name }}">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ trainer.name }}</h5>
+                                <p class="card-text">{{ trainer.bio }}</p>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+    </div>
+
+    <!-- Sign Up Modal -->
+    <div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="signupModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form action="{% url 'signup' %}" method="post">
+                    {% csrf_token %}
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="signupModalLabel">Sign Up</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="signupUsername">Username</label>
+                            <input type="text" class="form-control" id="signupUsername" name="username" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="signupEmail">Email address</label>
+                            <input type="email" class="form-control" id="signupEmail" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="signupPassword">Password</label>
+                            <input type="password" class="form-control" id="signupPassword" name="password1" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="signupConfirmPassword">Confirm Password</label>
+                            <input type="password" class="form-control" id="signupConfirmPassword" name="password2" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Sign Up</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form action="{% url 'login' %}" method="post">
+                    {% csrf_token %}
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="loginModalLabel">Login</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="loginUsername">Username</label>
+                            <input type="text" class="form-control" id="loginUsername" name="username" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="loginPassword">Password</label>
+                            <input type="password" class="form-control" id="loginPassword" name="password" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Login</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Custom JS for carousel sliding -->
+    <script>
+        $(document).ready(function(){
+            $('.carousel').carousel();
+        });
+    </script>
 </body>
 </html>
