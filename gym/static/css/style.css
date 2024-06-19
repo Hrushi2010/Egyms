@@ -65,8 +65,8 @@ body {
 /*header section*/
 .hero_area {
   height: 100vh;
-  background: -webkit-gradient(linear, left top, right top, from(rgba(255, 255, 255, 0)), to(rgba(255, 255, 255, 0))), url(../images/hero-bg.jpg);
-  background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), url(../images/hero-bg.jpg);
+  background: -webkit-gradient(linear, left top, right top, from(rgba(255, 255, 255, 0)), to(rgba(255, 255, 255, 0)));
+  background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0));
   background-repeat: no-repeat;
   background-size: cover;
   background-position: right bottom;
@@ -115,7 +115,7 @@ body {
 }
 
 .custom_nav2 {
-  padding: 0 45px;
+  padding: 0 160px;
 }
 
 .custom_nav2 .custom_nav-container {

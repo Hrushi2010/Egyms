@@ -98,7 +98,7 @@ body {
 
 .hero_area {
     height: 100vh;
-    background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), url(../images/hero-bg.jpg);
+    background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0));
     background-repeat: no-repeat;
     background-size: cover;
     background-position: right bottom;
@@ -153,7 +153,7 @@ body {
 }
 
 .custom_nav2 {
-    padding: 0 45px;
+    padding: 0 160px;
 
     .custom_nav-container {
         padding: 5px 0;

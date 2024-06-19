@@ -17,12 +17,3 @@ from .models import Category, Program, Trainer
 def index(request):
     return render(request, 'gym/index.html')
 
-def about(request):
-    return render(request, 'gym/about.html')
-
-def contact(request):
-    return render(request, 'gym/contact.html')
-
-def service(request):
-    return render(request, 'gym/service.html')
-
